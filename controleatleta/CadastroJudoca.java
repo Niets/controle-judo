@@ -661,7 +661,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonRemoverTelefone))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94))
+                .addGap(95, 95, 95))
         );
 
         jTabbedPane1.addTab("Informações Gerais", jPanel1);
@@ -683,6 +683,11 @@ public class CadastroJudoca extends javax.swing.JFrame {
         jLabelCep.setText("CEP:");
 
         jComboBoxEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        jComboBoxEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEstadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1136,6 +1141,10 @@ private void jComboBoxEstiloActionPerformed(java.awt.event.ActionEvent evt) {//G
 private void jTextFieldTotalEstrangulamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalEstrangulamentosActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextFieldTotalEstrangulamentosActionPerformed
+
+private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jComboBoxEstadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarPremiacao;
