@@ -25,7 +25,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
     private final char ESTILO_ORTODOXO_VALOR = 'O';
     private final char ESTILO_SOUTHPAW_VALOR = 'S';
     private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    private ControleJudoca controleBoxeador;
+    private ControleJudoca controleJudoca;
     private Judoca umJudoca;
     private boolean modoAlteracao;
     private boolean novoRegistro;
@@ -35,7 +35,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
     public CadastroJudoca() {
         initComponents();
         this.habilitarDesabilitarCampos();
-        this.controleBoxeador = new ControleJudoca();
+        this.controleJudoca = new ControleJudoca();
         this.telefonesListModel = new DefaultListModel();
         this.jListTelefones.setModel(telefonesListModel);
         this.premiacaoListModel = new DefaultListModel();
@@ -365,7 +365,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
         }
 
         if (novoRegistro == true) {
-            controleBoxeador.adicionar(umJudoca);
+            controleJudoca.adicionar(umJudoca);
         }
         modoAlteracao = false;
         novoRegistro = false;
@@ -374,7 +374,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
     }
 
     private void carregarListaBoxeadores() {
-        ArrayList<Judoca> listaBoxeadores = controleBoxeador.getListaJudocas();
+        ArrayList<Judoca> listaBoxeadores = controleJudoca.getListaJudocas();
         DefaultTableModel model = (DefaultTableModel) jTableListaJudocas.getModel();
         model.setRowCount(0);
         for (Judoca b : listaBoxeadores) {
@@ -1061,7 +1061,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        this.controleBoxeador.remover(umJudoca);
+        this.controleJudoca.remover(umJudoca);
         umJudoca = null;
         this.limparCampos();
         this.carregarListaBoxeadores();
@@ -1091,7 +1091,7 @@ private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//
 }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
     private void pesquisarBoxeador(String nome) {
-        Judoca boxeadorPesquisado = controleBoxeador.pesquisar(nome);
+        Judoca boxeadorPesquisado = controleJudoca.pesquisar(nome);
 
         if (boxeadorPesquisado == null) {
             exibirInformacao("Judoca não encontrado.");
