@@ -7,11 +7,9 @@ public class Premiacao {
     private String faixa;
     private String medalha;
 
-    public Premiacao(String titulo, int ano, String faixa, String medalha) {
+    public Premiacao(String titulo, int ano) {
         this.titulo = titulo;
         this.ano = ano;
-        this.faixa = faixa;
-        this.medalha = medalha;
     }
 
     public String getTitulo() {

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Judoca extends Atleta {
 
     private char categoria; // A=Amador P=Profissional
-    private char estilo; // O=Ortodoxo(destro) S=Southpaw(canhoto)
+    private String faixa; // de 0 (branca) até 8 (preta)
     private ArrayList<Premiacao> premiacoes;
     private Double envergadura; // Em cm
     private int totalLutas;
@@ -50,12 +50,12 @@ public class Judoca extends Atleta {
         this.envergadura = envergadura;
     }
 
-    public char getEstilo() {
-        return estilo;
+    public String getFaixa() {
+        return faixa;
     }
 
-    public void setEstilo(char estilo) {
-        this.estilo = estilo;
+    public void setFaixa(String faixa) {
+        this.faixa = faixa;
     }
 
     public int getTotalLutas() {
@@ -90,79 +90,52 @@ public class Judoca extends Atleta {
         this.totalVitoriasIppon = vitoriasIppon;
     }
 
-    public String obterCategoriaPesoNome() {
-        return obterCategoriaPesoNome(this.getCategoria(), this.getPeso());
+    public String obterSexoPesoNome() {
+        return obterSexoPesoNome(this.getSexo(), this.getPeso());
     }
 
-    public static String obterCategoriaPesoNome(char categoria, double peso) {
-        if (categoria == 'A') {
-            return obterCategoriaPesoNomeAmador(peso);
-        } else if (categoria == 'P') {
-            return obterCategoriaPesoNomeProfissional(peso);
+    public static String obterSexoPesoNome(char sexo, double peso) {
+        if (sexo == 'M') {
+            return obterCategoriaPesoNomeMasc(peso);
+        } else if (sexo == 'F') {
+            return obterCategoriaPesoNomeFem(peso);
         } else {
             return "";
         }
     }
 
-    private static String obterCategoriaPesoNomeAmador(double peso) {
-        if (peso <= 48) {
-            return "Mosca Ligeiro";
-        } else if (peso <= 51) {
-            return "Mosca";
-        } else if (peso <= 54) {
-            return "Galo";
-        } else if (peso <= 57) {
-            return "Pena";
-        } else if (peso <= 57) {
+    private static String obterCategoriaPesoNomeMasc(double peso) {
+        if (peso < 60) {
+            return "Ligeiro";
+        } else if (peso <= 66) {
+            return "Meio-Leve";
+        } else if (peso <= 73) {
             return "Leve";
-        } else if (peso <= 64) {
-            return "M. M. Ligeiro";
-        } else if (peso <= 69) {
-            return "Meio Médio";
-        } else if (peso <= 75) {
-            return "Médio";
         } else if (peso <= 81) {
+            return "Meio-Médio";
+        } else if (peso <= 90) {
+            return "Médio";
+        } else if (peso <= 100) {
             return "Meio Pesado";
-        } else if (peso <= 91) {
-            return "Pesado";
         } else {
-            return "Super Pesado";
+            return "Pesado";
         }
     }
 
-    private static String obterCategoriaPesoNomeProfissional(double peso) {
-        if (peso <= 47.627) {
-            return "Palha";
-        } else if (peso <= 48.988) {
-            return "Mosca Ligeiro";
-        } else if (peso <= 50.802) {
-            return "Mosca";
-        } else if (peso <= 52.163) {
-            return "Super Mosca";
-        } else if (peso <= 53.524) {
-            return "Galo";
-        } else if (peso <= 55.338) {
-            return "Super Galo";
-        } else if (peso <= 57.153) {
-            return "Pena";
-        } else if (peso <= 58.967) {
-            return "Super Pena";
-        } else if (peso <= 61.235) {
+    private static String obterCategoriaPesoNomeFem(double peso) {
+       
+        if (peso <= 48) {
+            return "Ligeiro";
+        } else if (peso <= 52) {
+            return "Meio-Leve";
+        } else if (peso <= 57) {
             return "Leve";
-        } else if (peso <= 63.503) {
-            return "M. M. Ligeiro";
-        } else if (peso <= 66.678) {
-            return "M. Médio";
-        } else if (peso <= 69.853) {
-            return "M. Ligeiro";
-        } else if (peso <= 72.575) {
+        } else if (peso <= 63) {
+            return "Meio-Médio";
+        } else if (peso <= 70) {
             return "Médio";
-        } else if (peso <= 76.364) {
-            return "Super Médio";
-        } else if (peso <= 79.379) {
+        } else if (peso <= 78) {
             return "Meio Pesado";
-        } else if (peso <= 90.719) {
-            return "Cruzador";
         } else {
             return "Pesado";
         }

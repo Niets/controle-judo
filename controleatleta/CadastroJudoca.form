@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
@@ -35,6 +35,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -73,7 +74,7 @@
                       <Component id="jButtonCancelar" linkSize="1" min="-2" pref="86" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane4" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jTabbedPane1" alignment="0" pref="761" max="32767" attributes="1"/>
+                  <Component id="jTabbedPane1" alignment="0" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -154,7 +155,7 @@
                               <Component id="jTextFieldPeso" min="-2" pref="56" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jScrollPane1" pref="512" max="32767" attributes="1"/>
+                              <Component id="jScrollPane1" pref="538" max="32767" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jButtonAdicionarTelefone" min="-2" pref="60" max="-2" attributes="0"/>
@@ -373,7 +374,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelComplemento" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jLabelComplemento" alignment="0" pref="117" max="32767" attributes="1"/>
                           <Component id="jLabelPais" alignment="0" pref="95" max="32767" attributes="0"/>
                           <Component id="jLabelCidade" alignment="0" pref="95" max="32767" attributes="0"/>
                           <Component id="jLabelBairro" alignment="0" pref="95" max="32767" attributes="0"/>
@@ -386,7 +387,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextFieldCidade" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
                           <Component id="jTextFieldBairro" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="jTextFieldComplemento" alignment="0" pref="619" max="32767" attributes="0"/>
+                          <Component id="jTextFieldComplemento" alignment="0" pref="631" max="32767" attributes="0"/>
                           <Component id="jTextFieldNumero" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                           <Component id="jTextFieldLogradouro" alignment="0" pref="619" max="32767" attributes="1"/>
                           <Component id="jComboBoxEstado" min="-2" max="-2" attributes="0"/>
@@ -580,7 +581,7 @@
                           <Component id="jTextFieldTotalVitorias" alignment="0" pref="193" max="32767" attributes="1"/>
                           <Component id="jTextFieldTotalLutas" alignment="0" pref="193" max="32767" attributes="1"/>
                           <Component id="jTextFieldEnvergadura" alignment="0" pref="193" max="32767" attributes="1"/>
-                          <Component id="jComboBoxEstilo" alignment="0" pref="193" max="32767" attributes="1"/>
+                          <Component id="jComboBoxGraduacao" alignment="0" pref="213" max="32767" attributes="1"/>
                           <Component id="jTextFieldCategoriaPeso" alignment="0" pref="193" max="32767" attributes="1"/>
                           <Component id="jComboBoxCategoria" alignment="0" pref="193" max="32767" attributes="1"/>
                       </Group>
@@ -618,7 +619,7 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBoxEstilo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxGraduacao" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelEstilo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -664,7 +665,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -695,21 +696,21 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelEstilo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estilo:"/>
+                <Property name="text" type="java.lang.String" value="Gradua&#xe7;&#xe3;o:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxEstilo">
+            <Component class="javax.swing.JComboBox" name="jComboBoxGraduacao">
               <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Ortodoxo (destro)"/>
-                    <StringItem index="1" value="Southpaw (canhoto)"/>
-                  </StringArray>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="new javax.swing.DefaultComboBoxModel(new String[] { &quot;Faixa Branca&quot;, &quot;Faixa Cinza&quot;, &quot;Faixa Azul&quot;, &quot;Faixa Amarela&quot;, &quot;Faixa Laranja&quot;, &quot;Faixa Verde&quot;, &quot;Faixa Roxa&quot;, &quot;Faixa Marrom&quot;, &quot;Faixa Preta&quot; })" type="code"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxEstiloActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxGraduacaoActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JComboBox()"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldEnvergadura">
             </Component>
@@ -760,6 +761,9 @@
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCategoriaPesoActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelPremiacoes">
               <Properties>

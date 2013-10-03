@@ -25,10 +25,10 @@ public class CadastroPremiacao extends javax.swing.JDialog {
         jTextFieldTitulo = new javax.swing.JTextField();
         jLabelAno = new javax.swing.JLabel();
         jTextFieldAno = new javax.swing.JTextField();
-        jTextFieldFaixa = new javax.swing.JTextField();
         jLabelFaixa = new javax.swing.JLabel();
         jLabelMedalha = new javax.swing.JLabel();
-        jTextFieldMedalha = new javax.swing.JTextField();
+        jComboBoxMedalha = new javax.swing.JComboBox();
+        jComboBoxFaixa = new javax.swing.JComboBox();
 
         jButtonCancelar.setText("Cancelar");
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -48,21 +48,13 @@ public class CadastroPremiacao extends javax.swing.JDialog {
 
         jLabelAno.setText("Ano:");
 
-        jTextFieldFaixa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFaixaActionPerformed(evt);
-            }
-        });
-
         jLabelFaixa.setText("Faixa:");
 
         jLabelMedalha.setText("Medalha:");
 
-        jTextFieldMedalha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMedalhaActionPerformed(evt);
-            }
-        });
+        jComboBoxMedalha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ouro", "Prata", "Bronze"}));
+
+        jComboBoxFaixa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Branca", "Cinza", "Azul", "Amarela", "Laranja", "Verde", "Roxa", "Marrom", "Preta"}));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,24 +68,26 @@ public class CadastroPremiacao extends javax.swing.JDialog {
                     .addComponent(jLabelFaixa))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldFaixa)
-                            .addComponent(jTextFieldAno, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabelMedalha)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabelMedalha))
+                            .addComponent(jComboBoxFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
-                                .addComponent(jButtonAdicionar))
+                                .addComponent(jButtonAdicionar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonCancelar))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldMedalha)))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonCancelar)
-                        .addGap(11, 11, 11)))
-                .addContainerGap())
+                                .addComponent(jComboBoxMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(23, 23, 23))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldTitulo)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,13 +101,13 @@ public class CadastroPremiacao extends javax.swing.JDialog {
                     .addComponent(jLabelAno)
                     .addComponent(jTextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelMedalha)
-                    .addComponent(jTextFieldMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxMedalha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelFaixa)
                     .addComponent(jButtonCancelar)
-                    .addComponent(jButtonAdicionar))
+                    .addComponent(jButtonAdicionar)
+                    .addComponent(jComboBoxFaixa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -128,8 +122,61 @@ private void jButtonAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//
         jTextFieldAno.requestFocus();
         return;
     }
-    premiacao = new Premiacao(jTextFieldTitulo.getText(), Integer.parseInt(jTextFieldAno.getText()), jTextFieldFaixa.getText(), jTextFieldMedalha.getText());
+    
+    premiacao = new Premiacao(jTextFieldTitulo.getText(), Integer.parseInt(jTextFieldAno.getText()));
     this.setVisible(false);
+    
+    switch (jComboBoxMedalha.getSelectedIndex()) {
+            case 0:
+                premiacao.setMedalha("Ouro");
+                break;
+                
+            case 1:
+                premiacao.setMedalha("Prata");
+                break;
+                
+            case 2:
+                premiacao.setMedalha("Bronze");
+                break;
+    }   
+    
+    switch (jComboBoxFaixa.getSelectedIndex()) {
+            case 0:
+                premiacao.setFaixa("Branca");
+                break;
+                
+            case 1:
+                premiacao.setFaixa("Cinza");
+                break;
+                
+            case 2:
+                premiacao.setFaixa("Azul");
+                break;
+                
+            case 3:
+                premiacao.setFaixa("Amarela");
+                break;
+                
+            case 4:
+                premiacao.setFaixa("Laranja");
+                break;
+                
+            case 5:
+                premiacao.setFaixa("Verde");
+                break;
+                
+            case 6:
+                premiacao.setFaixa("Roxa");
+                break;
+                
+            case 7:
+                premiacao.setFaixa("Marrom");
+                break;
+            
+            case 8:
+                premiacao.setFaixa("Preta");
+            break;
+    }
 }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
 private void exibirInformacao(String info) {
@@ -139,14 +186,6 @@ private void exibirInformacao(String info) {
 private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
     this.setVisible(false);
 }//GEN-LAST:event_jButtonCancelarActionPerformed
-
-private void jTextFieldFaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFaixaActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jTextFieldFaixaActionPerformed
-
-private void jTextFieldMedalhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMedalhaActionPerformed
-// TODO add your handling code here:
-}//GEN-LAST:event_jTextFieldMedalhaActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -189,13 +228,13 @@ private void jTextFieldMedalhaActionPerformed(java.awt.event.ActionEvent evt) {/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionar;
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JComboBox jComboBoxFaixa;
+    private javax.swing.JComboBox jComboBoxMedalha;
     private javax.swing.JLabel jLabelAno;
     private javax.swing.JLabel jLabelFaixa;
     private javax.swing.JLabel jLabelMedalha;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextFieldAno;
-    private javax.swing.JTextField jTextFieldFaixa;
-    private javax.swing.JTextField jTextFieldMedalha;
     private javax.swing.JTextField jTextFieldTitulo;
     // End of variables declaration//GEN-END:variables
 }

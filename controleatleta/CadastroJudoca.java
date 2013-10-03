@@ -20,10 +20,15 @@ public class CadastroJudoca extends javax.swing.JFrame {
     private final byte CATEGORIA_PROFISSIONAL_INDICE = 1;
     private final char CATEGORIA_AMADOR_VALOR = 'A';
     private final char CATEGORIA_PROFISSIONAL_VALOR = 'P';
-    private final byte ESTILO_ORTODOXO_INDICE = 0;
-    private final byte ESTILO_SOUTHPAW_INDICE = 1;
-    private final char ESTILO_ORTODOXO_VALOR = 'O';
-    private final char ESTILO_SOUTHPAW_VALOR = 'S';
+    private final byte FAIXA_BRANCA = 0;
+    private final byte FAIXA_CINZA = 1;
+    private final byte FAIXA_AZUL = 2;
+    private final byte FAIXA_AMARELA = 3;
+    private final byte FAIXA_LARANJA = 4;
+    private final byte FAIXA_VERDE = 5;
+    private final byte FAIXA_ROXA = 6;
+    private final byte FAIXA_MARROM = 7;
+    private final byte FAIXA_PRETA = 8;
     private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private ControleJudoca controleJudoca;
     private Judoca umJudoca;
@@ -71,7 +76,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
         premiacaoListModel.clear();
         jComboBoxSexo.setSelectedIndex(0);
         jComboBoxCategoria.setSelectedIndex(0);
-        jComboBoxEstilo.setSelectedIndex(0);
+        jComboBoxGraduacao.setSelectedIndex(0);
         this.atualizarCategoriaPeso();
     }
 
@@ -134,15 +139,6 @@ public class CadastroJudoca extends javax.swing.JFrame {
                 break;
             case CATEGORIA_PROFISSIONAL_VALOR:
                 jComboBoxCategoria.setSelectedIndex(CATEGORIA_PROFISSIONAL_INDICE);
-                break;
-        }
-
-        switch (umJudoca.getEstilo()) {
-            case ESTILO_ORTODOXO_VALOR:
-                jComboBoxEstilo.setSelectedIndex(ESTILO_ORTODOXO_INDICE);
-                break;
-            case ESTILO_SOUTHPAW_VALOR:
-                jComboBoxEstilo.setSelectedIndex(ESTILO_SOUTHPAW_INDICE);
                 break;
         }
 
@@ -269,7 +265,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
         jButtonRemoverPremiacao.setEnabled(modoAlteracao);
         jComboBoxSexo.setEnabled(modoAlteracao);
         jComboBoxCategoria.setEnabled(modoAlteracao);
-        jComboBoxEstilo.setEnabled(modoAlteracao);
+        jComboBoxGraduacao.setEnabled(modoAlteracao);
         jTableListaJudocas.setEnabled(modoAlteracao == false);
     }
 
@@ -355,12 +351,41 @@ public class CadastroJudoca extends javax.swing.JFrame {
                 break;
         }
 
-        switch (jComboBoxEstilo.getSelectedIndex()) {
-            case ESTILO_ORTODOXO_INDICE:
-                umJudoca.setEstilo(ESTILO_ORTODOXO_VALOR);
+        switch (jComboBoxGraduacao.getSelectedIndex()) {
+            case FAIXA_BRANCA:
+                umJudoca.setFaixa("Faixa Branca");
                 break;
-            case ESTILO_SOUTHPAW_INDICE:
-                umJudoca.setEstilo(ESTILO_SOUTHPAW_VALOR);
+                
+            case FAIXA_CINZA:
+                umJudoca.setFaixa("Faixa Cinza");;
+                break;
+                
+            case FAIXA_AZUL:
+                umJudoca.setFaixa("Faixa Azul");
+                break;
+                
+            case FAIXA_AMARELA:
+                umJudoca.setFaixa("Faixa Amarela");
+                break;
+                
+             case FAIXA_LARANJA:
+                umJudoca.setFaixa("Faixa Laranja");;
+                break;
+                 
+             case FAIXA_VERDE:
+                umJudoca.setFaixa("Faixa Verde");;
+                break;
+                 
+             case FAIXA_ROXA:
+                umJudoca.setFaixa("Faixa Roxa");;
+                break;
+                 
+             case FAIXA_MARROM:
+                umJudoca.setFaixa("Faixa Marrom");;
+                break;
+                 
+             case FAIXA_PRETA:
+                umJudoca.setFaixa("Faixa Preta");;
                 break;
         }
 
@@ -369,15 +394,15 @@ public class CadastroJudoca extends javax.swing.JFrame {
         }
         modoAlteracao = false;
         novoRegistro = false;
-        this.carregarListaBoxeadores();
+        this.carregarListaJudocas();
         this.habilitarDesabilitarCampos();
     }
 
-    private void carregarListaBoxeadores() {
-        ArrayList<Judoca> listaBoxeadores = controleJudoca.getListaJudocas();
+    private void carregarListaJudocas() {
+        ArrayList<Judoca> listaJudocas = controleJudoca.getListaJudocas();
         DefaultTableModel model = (DefaultTableModel) jTableListaJudocas.getModel();
         model.setRowCount(0);
-        for (Judoca b : listaBoxeadores) {
+        for (Judoca b : listaJudocas) {
             model.addRow(new String[]{b.getNome(), b.getCpf()});
         }
         jTableListaJudocas.setModel(model);
@@ -388,18 +413,19 @@ public class CadastroJudoca extends javax.swing.JFrame {
     }
 
     private void atualizarCategoriaPeso() {
-        char categoria;
-        switch (jComboBoxCategoria.getSelectedIndex()) {
-            case CATEGORIA_AMADOR_INDICE:
-                categoria = CATEGORIA_AMADOR_VALOR;
+        char sexo;
+        switch (jComboBoxSexo.getSelectedIndex()) {
+            case SEXO_MASCULINO_INDICE:
+                sexo = 'M';
                 break;
-            case CATEGORIA_PROFISSIONAL_INDICE:
-                categoria = CATEGORIA_PROFISSIONAL_VALOR;
+            case SEXO_FEMININO_INDICE:
+                sexo = 'F';
                 break;
             default:
                 return;
         }
-        jTextFieldCategoriaPeso.setText(Judoca.obterCategoriaPesoNome(categoria, Double.parseDouble(jTextFieldPeso.getText())));
+        
+        jTextFieldCategoriaPeso.setText(Judoca.obterSexoPesoNome(sexo, Double.parseDouble(jTextFieldPeso.getText())));
     }
 
     @SuppressWarnings("unchecked")
@@ -456,7 +482,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
         jComboBoxCategoria = new javax.swing.JComboBox();
         jLabelCategoriaPeso = new javax.swing.JLabel();
         jLabelEstilo = new javax.swing.JLabel();
-        jComboBoxEstilo = new javax.swing.JComboBox();
+        jComboBoxGraduacao = new javax.swing.JComboBox();
         jTextFieldEnvergadura = new javax.swing.JTextField();
         jLabelEnvergadura = new javax.swing.JLabel();
         jLabelTotalLutas = new javax.swing.JLabel();
@@ -598,7 +624,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAdicionarTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -696,7 +722,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                     .addComponent(jLabelPais, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                     .addComponent(jLabelCidade, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                     .addComponent(jLabelBairro, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
@@ -708,7 +734,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
+                    .addComponent(jTextFieldComplemento, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                     .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
                     .addComponent(jComboBoxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -771,12 +797,12 @@ public class CadastroJudoca extends javax.swing.JFrame {
 
         jLabelCategoriaPeso.setText("Categoria (Peso):");
 
-        jLabelEstilo.setText("Estilo:");
+        jLabelEstilo.setText("Graduação:");
 
-        jComboBoxEstilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ortodoxo (destro)", "Southpaw (canhoto)" }));
-        jComboBoxEstilo.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxGraduacao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Faixa Branca", "Faixa Cinza", "Faixa Azul", "Faixa Amarela", "Faixa Laranja", "Faixa Verde", "Faixa Roxa", "Faixa Marrom", "Faixa Preta" }));
+        jComboBoxGraduacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxEstiloActionPerformed(evt);
+                jComboBoxGraduacaoActionPerformed(evt);
             }
         });
 
@@ -799,6 +825,11 @@ public class CadastroJudoca extends javax.swing.JFrame {
         jLabelTotalDerrotas.setText("Total de Derrotas:");
 
         jTextFieldCategoriaPeso.setEnabled(false);
+        jTextFieldCategoriaPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCategoriaPesoActionPerformed(evt);
+            }
+        });
 
         jLabelPremiacoes.setText("Premiações:");
 
@@ -842,7 +873,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                     .addComponent(jTextFieldTotalVitorias, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                     .addComponent(jTextFieldTotalLutas, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                     .addComponent(jTextFieldEnvergadura, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(jComboBoxEstilo, 0, 193, Short.MAX_VALUE)
+                    .addComponent(jComboBoxGraduacao, 0, 213, Short.MAX_VALUE)
                     .addComponent(jTextFieldCategoriaPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                     .addComponent(jComboBoxCategoria, 0, 193, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
@@ -872,7 +903,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                             .addComponent(jTextFieldCategoriaPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxGraduacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelEstilo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -906,7 +937,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonRemoverPremiacao))
                             .addComponent(jScrollPane2))))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Ficha Técnica", jPanel3);
@@ -991,7 +1022,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 761, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.LEADING))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
 
@@ -1069,7 +1100,7 @@ public class CadastroJudoca extends javax.swing.JFrame {
         this.controleJudoca.remover(umJudoca);
         umJudoca = null;
         this.limparCampos();
-        this.carregarListaBoxeadores();
+        this.carregarListaJudocas();
         this.habilitarDesabilitarCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -1091,17 +1122,17 @@ private void jButtonRemoverTelefoneActionPerformed(java.awt.event.ActionEvent ev
 private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
     String pesquisa = JOptionPane.showInputDialog("Informe o nome do Judoca.");
     if (pesquisa != null) {
-        this.pesquisarBoxeador(pesquisa);
+        this.pesquisarJudoca(pesquisa);
     }
 }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
-    private void pesquisarBoxeador(String nome) {
-        Judoca boxeadorPesquisado = controleJudoca.pesquisar(nome);
+    private void pesquisarJudoca(String nome) {
+        Judoca judocaPesquisado = controleJudoca.pesquisar(nome);
 
-        if (boxeadorPesquisado == null) {
+        if (judocaPesquisado == null) {
             exibirInformacao("Judoca não encontrado.");
         } else {
-            this.umJudoca = boxeadorPesquisado;
+            this.umJudoca = judocaPesquisado;
             this.preencherCampos();
             this.habilitarDesabilitarCampos();
         }
@@ -1126,7 +1157,7 @@ private void jTableListaJudocasMouseClicked(java.awt.event.MouseEvent evt) {//GE
     if (jTableListaJudocas.isEnabled()) {
         DefaultTableModel model = (DefaultTableModel) jTableListaJudocas.getModel();
         String nome = (String) model.getValueAt(jTableListaJudocas.getSelectedRow(), 0);
-        this.pesquisarBoxeador(nome);
+        this.pesquisarJudoca(nome);
     }
 }//GEN-LAST:event_jTableListaJudocasMouseClicked
 
@@ -1134,9 +1165,9 @@ private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent 
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextFieldDataNascimentoActionPerformed
 
-private void jComboBoxEstiloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstiloActionPerformed
+private void jComboBoxGraduacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGraduacaoActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jComboBoxEstiloActionPerformed
+}//GEN-LAST:event_jComboBoxGraduacaoActionPerformed
 
 private void jTextFieldTotalEstrangulamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalEstrangulamentosActionPerformed
 // TODO add your handling code here:
@@ -1145,6 +1176,10 @@ private void jTextFieldTotalEstrangulamentosActionPerformed(java.awt.event.Actio
 private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEstadoActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jComboBoxEstadoActionPerformed
+
+    private void jTextFieldCategoriaPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCategoriaPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCategoriaPesoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarPremiacao;
@@ -1159,7 +1194,7 @@ private void jComboBoxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//G
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox jComboBoxCategoria;
     private javax.swing.JComboBox jComboBoxEstado;
-    private javax.swing.JComboBox jComboBoxEstilo;
+    private javax.swing.JComboBox jComboBoxGraduacao;
     private javax.swing.JComboBox jComboBoxSexo;
     private javax.swing.JLabel jLabelAltura;
     private javax.swing.JLabel jLabelBairro;
