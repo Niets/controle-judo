@@ -13,6 +13,16 @@ public class Judoca extends Atleta {
     private int totalVitoriasIppon;
     private int totalEstrangulamento;
     private int totalDerrotas;
+    private String deficiencia;
+    private ArrayList <Remedio> remedios;
+
+    public ArrayList<Remedio> getRemedios() {
+        return remedios;
+    }
+
+    public void setRemedios(ArrayList<Remedio> remedios) {
+        this.remedios = remedios;
+    }
 
     public Judoca(String nome) {
         super(nome);
@@ -64,6 +74,14 @@ public class Judoca extends Atleta {
 
     public void setTotalLutas(int numLutas) {
         this.totalLutas = numLutas;
+    }
+    
+    public String getDeficiencia() {
+        return deficiencia;
+    }
+
+    public void setDeficiencia(String deficiencia) {
+        this.deficiencia = deficiencia;
     }
 
     public ArrayList<Premiacao> getPremiacoes() {

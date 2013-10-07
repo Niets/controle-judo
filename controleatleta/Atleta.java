@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Atleta {
     
-    ArrayList <String> telefones;
+    private ArrayList <String> telefones;
     private String nome;
     private Date dataNascimento;
     private Endereco endereco;
@@ -16,6 +16,15 @@ public class Atleta {
     private char sexo;
     private String rg;
     private String cpf;
+    private ArrayList <String> doencas;
+
+    public ArrayList<String> getDoencas() {
+        return doencas;
+    }
+
+    public void setDoencas(ArrayList<String> doencas) {
+        this.doencas = doencas;
+    }
     
     public Atleta(String nome) {
         this.nome = nome;
