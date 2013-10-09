@@ -17,6 +17,24 @@ public class Atleta {
     private String rg;
     private String cpf;
     private ArrayList <String> doencas;
+    private int idade;
+    private int categoria;
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getIdade() {
+        return idade;
+    }
+
+    public void setIdade(int idade) {
+        this.idade = idade;
+    }
 
     public ArrayList<String> getDoencas() {
         return doencas;

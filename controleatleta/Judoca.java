@@ -3,8 +3,7 @@ package controleatleta;
 import java.util.ArrayList;
 
 public class Judoca extends Atleta {
-
-    private char categoria; // A=Amador P=Profissional
+    
     private String faixa; // de 0 (branca) até 8 (preta)
     private ArrayList<Premiacao> premiacoes;
     private Double envergadura; // Em cm
@@ -27,15 +26,7 @@ public class Judoca extends Atleta {
     public Judoca(String nome) {
         super(nome);
     }
-
-    public char getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(char categoria) {
-        this.categoria = categoria;
-    }
-
+    
     public int getTotalDerrotas() {
         return totalDerrotas;
     }
@@ -107,23 +98,103 @@ public class Judoca extends Atleta {
     public void setTotalVitoriasIppon(int vitoriasIppon) {
         this.totalVitoriasIppon = vitoriasIppon;
     }
-
-    public String obterSexoPesoNome() {
-        return obterSexoPesoNome(this.getSexo(), this.getPeso());
+    
+    public String obterCategoria() {
+        return obterCategoria(this.getIdade());
+    }
+    
+    public static String obterCategoria(int idade){
+        if (idade <= 14){
+           return "Pré-Juvenil";
+        }
+        
+        else if (idade <= 16){
+            return "Juvenil";
+        }
+        
+        else if (idade <= 19){
+            return "Júnior";
+        }
+        
+        else {
+            return "Sênior";
+        }
+        
     }
 
-    public static String obterSexoPesoNome(char sexo, double peso) {
+    public String obterSexoPesoNomeCategoria() {
+        return obterSexoCategoria(this.getSexo(), this.getPeso(), this.getCategoria());
+    }
+
+    public static String obterSexoCategoria(char sexo, double peso, int categoria) {
         if (sexo == 'M') {
-            return obterCategoriaPesoNomeMasc(peso);
+            return obterCategoriaMasc(peso, categoria);
         } else if (sexo == 'F') {
-            return obterCategoriaPesoNomeFem(peso);
+            return obterCategoriaFem(peso, categoria);
         } else {
             return "";
         }
     }
 
-    private static String obterCategoriaPesoNomeMasc(double peso) {
-        if (peso < 60) {
+    private static String obterCategoriaMasc(double peso, int categoria) {
+       
+        if (categoria == 0){
+            return obterCategoriaM0(peso);
+        } else if (categoria == 1){
+            return obterCategoriaM1(peso);
+        } else if (categoria == 2){
+            return obterCategoriaM2(peso);
+        } else{
+            return obterCategoriaM2(peso);
+        }
+        
+        //Categoria Sênior e Júnior são as mesmas em termo "pesagem".
+    }
+    
+    private static String obterCategoriaM0(double peso){
+        if (peso <= 36) {
+            return "Sub-Ligeiro";
+        } else if (peso <= 40) {
+            return "Ligeiro";
+        } else if (peso <= 44) {
+            return "Meio-Leve";
+        } else if (peso <= 48) {
+            return "Leve";
+        } else if (peso <= 53) {
+            return "Meio-Médio";
+        } else if (peso <= 58) {
+            return "Médio";
+        } else if (peso <= 64) {
+            return "Meio-Pesado";
+        } else {
+            return "Pesado";
+        }
+    }
+    
+    private static String obterCategoriaM1(double peso){
+        if (peso <= 50) {
+            return "Sub-Ligeiro";
+        } else if (peso <= 55) {
+            return "Ligeiro";
+        } else if (peso <= 60) {
+            return "Meio-Leve";
+        } else if (peso <= 66) {
+            return "Leve";
+        } else if (peso <= 73) {
+            return "Meio-Médio";
+        } else if (peso <= 81) {
+            return "Médio";
+        } else if (peso <= 90) {
+            return "Meio-Pesado";
+        } else {
+            return "Pesado";
+        }
+    }
+    
+    private static String obterCategoriaM2(double peso){
+        if (peso <= 55) {
+            return "Sub-Ligeiro";
+        } else if (peso <= 60) {
             return "Ligeiro";
         } else if (peso <= 66) {
             return "Meio-Leve";
@@ -134,15 +205,50 @@ public class Judoca extends Atleta {
         } else if (peso <= 90) {
             return "Médio";
         } else if (peso <= 100) {
-            return "Meio Pesado";
+            return "Meio-Pesado";
         } else {
             return "Pesado";
         }
     }
 
-    private static String obterCategoriaPesoNomeFem(double peso) {
+    private static String obterCategoriaFem(double peso, int categoria) {
        
-        if (peso <= 48) {
+        if (categoria == 0){
+            return obterCategoriaM0(peso);
+        } else if (categoria == 1){
+            return obterCategoriaF1(peso);
+        } else if (categoria == 2){
+            return obterCategoriaF2(peso);
+        } else{
+            return obterCategoriaF2(peso);
+        }
+        
+    }
+    
+    private static String obterCategoriaF1(double peso){
+        if (peso <= 40) {
+            return "Sub-Ligeiro";
+        } else if (peso <= 44) {
+            return "Ligeiro";
+        } else if (peso <= 48) {
+            return "Meio-Leve";
+        } else if (peso <= 52) {
+            return "Leve";
+        } else if (peso <= 57) {
+            return "Meio-Médio";
+        } else if (peso <= 64) {
+            return "Médio";
+        } else if (peso <= 70) {
+            return "Meio-Pesado";
+        } else {
+            return "Pesado";
+        }
+    }
+    
+    private static String obterCategoriaF2(double peso){
+        if (peso <= 44) {
+            return "Sub-Ligeiro";
+        } else if (peso <= 48) {
             return "Ligeiro";
         } else if (peso <= 52) {
             return "Meio-Leve";
@@ -153,7 +259,7 @@ public class Judoca extends Atleta {
         } else if (peso <= 70) {
             return "Médio";
         } else if (peso <= 78) {
-            return "Meio Pesado";
+            return "Meio-Pesado";
         } else {
             return "Pesado";
         }
