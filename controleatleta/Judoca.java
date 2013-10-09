@@ -14,6 +14,15 @@ public class Judoca extends Atleta {
     private int totalDerrotas;
     private String deficiencia;
     private ArrayList <Remedio> remedios;
+    private String tecnicaFavorita;
+
+    public String getTecnicaFavorita() {
+        return tecnicaFavorita;
+    }
+
+    public void setTecnicaFavorita(String tecnicaFavorita) {
+        this.tecnicaFavorita = tecnicaFavorita;
+    }
 
     public ArrayList<Remedio> getRemedios() {
         return remedios;
