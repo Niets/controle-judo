@@ -129,26 +129,34 @@ public class CadastroJudoca extends javax.swing.JFrame {
 
         telefonesListModel.clear();
         telefones = umJudoca.getTelefones();
-        for (String t : telefones) {
-            telefonesListModel.addElement(t);
+        if(telefones != null){    
+            for (String t : telefones) {
+                telefonesListModel.addElement(t);
+            }
         }
 
         premiacaoListModel.clear();
         premiacoes = umJudoca.getPremiacoes();
-        for (Premiacao p : premiacoes) {
-            premiacaoListModel.addElement(p);
+        if(premiacoes != null){    
+            for (Premiacao p : premiacoes) {
+                premiacaoListModel.addElement(p);
+            }
         }
         
         remedioListModel.clear();
         remedios = umJudoca.getRemedios();
-        for (Remedio r : remedios){
-            remedioListModel.addElement(r);
-        }
-        
+        if(remedios != null){
+            for (Remedio r : remedios){
+                remedioListModel.addElement(r);
+            }
+        } 
+            
         doencaListModel.clear();
         doencas = umJudoca.getDoencas();
-        for (String d : doencas){
-            doencaListModel.addElement(d);
+        if(doencas != null){    
+            for (String d : doencas){
+                doencaListModel.addElement(d);
+            }
         }
         
 
